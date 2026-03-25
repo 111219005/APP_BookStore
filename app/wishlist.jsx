@@ -1,13 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import Toolbar from '../components/Toolbar';
+import BottomNav from '../components/BottomNav';
 
 export default function WishlistScreen() {
   return (
     <>
     <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+    <Toolbar />
     <View style={styles.screen}>
-      <Text>Wishlist Screen</Text>
+      <Text>Wishlist</Text>
     </View>
+    <BottomNav />
     </>
   );
 }

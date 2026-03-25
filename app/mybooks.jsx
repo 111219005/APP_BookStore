@@ -1,13 +1,16 @@
-import React from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import BottomNav from '../components/BottomNav';
+import Toolbar from '../components/Toolbar';
 
 export default function MyBooksScreen() {
   return (
     <>
     <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+    <Toolbar />
     <View style={styles.screen}>
-      <Text>My Books Screen</Text>
+      <Text>My Books</Text>
     </View>
+    <BottomNav />
     </>
   );
 }
