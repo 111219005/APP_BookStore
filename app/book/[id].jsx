@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import popularbooks from '../../json/popularbooks.json';
 import newestbooks from '../../json/newestbooks.json';
@@ -30,41 +31,47 @@ export default function BookDetail() {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      <Navbar />
-      <View style={styles.container}>
-        <Image
-          source={BOOK_IMAGES[book.id.toString()]}
-          style={styles.bookImage}
-        />
-        <Text style={styles.title}>{book.title}</Text>
-        <Text style={styles.subtitle}>{book.subtitle}</Text>
-        <View style={styles.rate}>
-          <View style={styles.ratingstar}>
-            {[...Array(5)].map((_, i) => (
-              <Image
-                key={i}
-                source={i < book.rating ? require("../../img/icon/star/icon_star_filled.png") : require("../../img/icon/star_empty/icon_star_empty.png")}
-              />
-            ))}
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <Navbar />
+        <View style={styles.container}>
+          <Image
+            source={BOOK_IMAGES[book.id.toString()]}
+            style={styles.bookImage}
+          />
+          <Text style={styles.title}>{book.title}</Text>
+          <Text style={styles.subtitle}>{book.subtitle}</Text>
+          <View style={styles.rate}>
+            <View style={styles.ratingstar}>
+              {[...Array(5)].map((_, i) => (
+                <Image
+                  key={i}
+                  source={i < book.rating ? require("../../img/icon/star/icon_star_filled.png") : require("../../img/icon/star_empty/icon_star_empty.png")}
+                />
+              ))}
+            </View>
+            <Text style={styles.rateText}>
+              {book.rating}.0
+              <Text style={{ color: '#666' }}> / 5.0</Text>
+            </Text>
           </View>
-          <Text style={styles.rateText}>
-            {book.rating}.0
-            <Text style={{ color: '#666' }}> / 5.0</Text>
-          </Text>
+          <View style={{ width: 320, marginTop: 16 }}>
+            <Text style={styles.descriptionText}>{book.description}</Text>
+          </View>
+          <TouchableOpacity style={styles.buyButton}>
+            <Text style={styles.buttonText}>BUY NOW FOR ${book.price}</Text>
+          </TouchableOpacity>
         </View>
-        <View style={{ width: 320, marginTop: 16 }}>
-          <Text style={styles.descriptionText}>{book.description}</Text>
-        </View>
-        <TouchableOpacity style={styles.buyButton}>
-          <Text style={styles.buttonText}>BUY NOW FOR ${book.price}</Text>
-        </TouchableOpacity>
-      </View>
-      <BottomNav />
+        <BottomNav />
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   container: {
     flex: 1,
     padding: 20,

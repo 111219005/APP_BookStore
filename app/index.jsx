@@ -1,5 +1,6 @@
 import { StyleSheet, View, StatusBar } from "react-native";
 import { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import popularbooks from '../json/popularbooks.json';
 import newestbooks from '../json/newestbooks.json';
 import Toolbar from '../components/Toolbar';
@@ -16,7 +17,7 @@ export default function Page() {
     return (
         <>
             <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container} edges={['top']}>
                 <View style={styles.main}>
                     <Toolbar onMenuPress={() => setIsMenuOpen(true)} />
                     <SectionTitle title="Popular Books" />
@@ -26,7 +27,7 @@ export default function Page() {
                     <BottomNav />
                     <Drawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
                 </View>
-            </View>
+            </SafeAreaView>
         </>
     );
 }
@@ -34,7 +35,6 @@ export default function Page() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "flex-start",
         backgroundColor: "white",
     },
     main: {

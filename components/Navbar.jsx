@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     height: 56,
     width: "100%",
     padding: 8,
-    marginTop: 32,
+    backgroundColor: "white",
   },
   icon: {
     width: 40,

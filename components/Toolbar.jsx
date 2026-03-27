@@ -1,6 +1,6 @@
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const Toolbar = ({ onMenuPress }) => (
+const Toolbar = ({ onMenuPress = () => {} }) => (
   <View style={styles.toolbar}>
     <TouchableOpacity onPress={onMenuPress}>
       <Image source={require("../img/icon/btn_menu.png")} style={styles.icon} />
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     height: 56,
     width: "100%",
     padding: 8,
-    marginTop: 32,
+    backgroundColor: "white",
   },
   icon: {
     width: 40,
